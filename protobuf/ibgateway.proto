@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package ibgateway;
+
+service MyService {
+    rpc GetSomething (GetSomethingRequest) returns (GetSomethingResponse);
+}
+
+message GetSomethingRequest {
+    // Add your request fields here
+}
+
+message GetSomethingResponse {
+    // Add your response fields here
+}
