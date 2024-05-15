@@ -54,10 +54,9 @@ message UserAction {
   int32 id = 1;
   int32 user_id = 2;
   Crud action_type = 3;
-  string full_name = 4;
-  google.protobuf.Timestamp timestamp = 5;
-  UserInfo user_info = 6;
-  repeated BrokerageInfo brokerages = 7;
+  google.protobuf.Timestamp timestamp = 4;
+  UserInfo user_info = 5;
+  repeated BrokerageInfo brokerages = 6;
 
   message UserInfo {
     string username = 1;
