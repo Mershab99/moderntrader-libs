@@ -1,4 +1,4 @@
-module github.com/mershab99/moderntrader-libs/go/api
+module github.com/Mershab99/moderntrader-libs/go/api
 
 go 1.13
 
