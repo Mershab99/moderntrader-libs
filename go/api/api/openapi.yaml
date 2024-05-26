@@ -1,0 +1,369 @@
+openapi: 3.0.3
+info:
+  description: ModernTrader-Go
+  title: ModernTrader-Go
+  version: 1.0.0
+servers:
+- url: https://moderntrader.mershab.xyz
+paths:
+  /api/users:
+    get:
+      description: Get all users
+      operationId: GetAllUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: Successfully retrieved all users
+      summary: Get all users
+      tags:
+      - User
+    post:
+      description: Create a user
+      operationId: CreateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Create a user in the system
+      responses:
+        "200":
+          description: Successfully created User
+      summary: Create a user
+      tags:
+      - User
+  /users/{userId}:
+    delete:
+      operationId: DeleteUserByID
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: User deleted
+      summary: Delete a user by ID
+    get:
+      operationId: GetUserByID
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: A user
+      summary: Get a user by ID
+    put:
+      operationId: UpdateUserByID
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: User updated
+      summary: Update a user by ID
+  /api/users/{userId}/subscriptions:
+    get:
+      operationId: GetUserSubscriptions
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Subscription'
+                type: array
+          description: A list of subscriptions
+      summary: Get all subscriptions for a user
+      tags:
+      - User
+      - Subscription
+    post:
+      operationId: CreateUserSubscription
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        "201":
+          description: Subscription created
+      summary: Create a new subscription for a user
+      tags:
+      - User
+      - Subscription
+  /api/users/{userId}/brokeraccounts:
+    get:
+      operationId: GetUserBrokerAccounts
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BrokerAccount'
+                type: array
+          description: A list of broker accounts
+      summary: Get all broker accounts for a user
+      tags:
+      - User
+      - BrokerAccount
+    post:
+      operationId: CreateUserBrokerAccount
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrokerAccount'
+      responses:
+        "201":
+          description: BrokerAccount created
+      summary: Create a new brokerage account for a user
+      tags:
+      - User
+      - Brokerage
+  /subscriptions/{subscriptionId}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Subscription deleted
+      summary: Delete a subscription by ID
+      tags:
+      - Subscription
+    get:
+      operationId: GetSubscriptionByID
+      parameters:
+      - explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+          description: A subscription
+      summary: Get a subscription by ID
+      tags:
+      - Subscription
+    put:
+      operationId: UpdateSubscriptionByID
+      parameters:
+      - explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        "200":
+          description: Subscription updated
+      summary: Update a subscription by ID
+      tags:
+      - Subscription
+  /api/strategies:
+    get:
+      description: Get all strategies
+      operationId: GetAllStrategies
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Strategy'
+                type: array
+          description: Successfully created Strategy
+      summary: Get all strategies
+      tags:
+      - Strategy
+    post:
+      description: Create a strategy
+      operationId: CreateStrategy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Strategy'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Strategy'
+        description: Create a strategy in the system
+      responses:
+        "200":
+          description: Successfully created Strategy
+      summary: Create a strategy
+      tags:
+      - Strategy
+components:
+  schemas:
+    User:
+      example:
+        firstName: mershab
+        lastName: issadien
+        userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        createDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        userId:
+          format: uuid
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        firstName:
+          example: mershab
+          type: string
+        lastName:
+          example: issadien
+          type: string
+      type: object
+    Subscription:
+      example:
+        brokerAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        subscriptionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        portfolioPercentage: 0
+      properties:
+        subscriptionId:
+          description: Unique identifier for the article
+          format: uuid
+          type: string
+        userId:
+          description: Unique identifier for the article
+          format: uuid
+          type: string
+        brokerAccountId:
+          description: Unique identifier for the article
+          format: uuid
+          type: string
+        portfolioPercentage:
+          description: Percentage of your portfolio
+          type: integer
+      type: object
+    Strategy:
+      example:
+        brokerAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        strategyId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        tags:
+        - tags
+        - tags
+      properties:
+        strategyId:
+          description: Unique identifier for the article
+          format: uuid
+          type: string
+        userId:
+          description: Unique identifier for the article
+          format: uuid
+          type: string
+        brokerAccountId:
+          description: Unique identifier for the article
+          format: uuid
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
+    BrokerAccount:
+      example:
+        brokerPassword: brokerPassword
+        brokerAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        brokerUsername: brokerUsername
+        brokerageType: brokerageType
+      properties:
+        brokerAccountId:
+          description: Unique identifier for the article
+          format: uuid
+          type: string
+        brokerageType:
+          description: brokerage type (enum)
+          format: text
+          type: string
+        brokerUsername:
+          description: broker account username
+          format: text
+          type: string
+        brokerPassword:
+          description: broker account password
+          format: text
+          type: string
+      type: object
