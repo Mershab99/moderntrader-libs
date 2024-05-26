@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Strategy type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Strategy{}
+
 // Strategy struct for Strategy
 type Strategy struct {
 	// Unique identifier for the article
@@ -44,7 +47,7 @@ func NewStrategyWithDefaults() *Strategy {
 
 // GetStrategyId returns the StrategyId field value if set, zero value otherwise.
 func (o *Strategy) GetStrategyId() string {
-	if o == nil || o.StrategyId == nil {
+	if o == nil || IsNil(o.StrategyId) {
 		var ret string
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *Strategy) GetStrategyId() string {
 // GetStrategyIdOk returns a tuple with the StrategyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Strategy) GetStrategyIdOk() (*string, bool) {
-	if o == nil || o.StrategyId == nil {
+	if o == nil || IsNil(o.StrategyId) {
 		return nil, false
 	}
 	return o.StrategyId, true
@@ -62,7 +65,7 @@ func (o *Strategy) GetStrategyIdOk() (*string, bool) {
 
 // HasStrategyId returns a boolean if a field has been set.
 func (o *Strategy) HasStrategyId() bool {
-	if o != nil && o.StrategyId != nil {
+	if o != nil && !IsNil(o.StrategyId) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *Strategy) SetStrategyId(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *Strategy) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *Strategy) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Strategy) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -94,7 +97,7 @@ func (o *Strategy) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *Strategy) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *Strategy) SetUserId(v string) {
 
 // GetBrokerAccountId returns the BrokerAccountId field value if set, zero value otherwise.
 func (o *Strategy) GetBrokerAccountId() string {
-	if o == nil || o.BrokerAccountId == nil {
+	if o == nil || IsNil(o.BrokerAccountId) {
 		var ret string
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *Strategy) GetBrokerAccountId() string {
 // GetBrokerAccountIdOk returns a tuple with the BrokerAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Strategy) GetBrokerAccountIdOk() (*string, bool) {
-	if o == nil || o.BrokerAccountId == nil {
+	if o == nil || IsNil(o.BrokerAccountId) {
 		return nil, false
 	}
 	return o.BrokerAccountId, true
@@ -126,7 +129,7 @@ func (o *Strategy) GetBrokerAccountIdOk() (*string, bool) {
 
 // HasBrokerAccountId returns a boolean if a field has been set.
 func (o *Strategy) HasBrokerAccountId() bool {
-	if o != nil && o.BrokerAccountId != nil {
+	if o != nil && !IsNil(o.BrokerAccountId) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *Strategy) SetBrokerAccountId(v string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Strategy) GetTags() []string {
-	if o == nil || o.Tags == nil {
+	if o == nil || IsNil(o.Tags) {
 		var ret []string
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *Strategy) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Strategy) GetTagsOk() ([]string, bool) {
-	if o == nil || o.Tags == nil {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -158,7 +161,7 @@ func (o *Strategy) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *Strategy) HasTags() bool {
-	if o != nil && o.Tags != nil {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *Strategy) SetTags(v []string) {
 }
 
 func (o Strategy) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.StrategyId != nil {
-		toSerialize["strategyId"] = o.StrategyId
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.BrokerAccountId != nil {
-		toSerialize["brokerAccountId"] = o.BrokerAccountId
-	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Strategy) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StrategyId) {
+		toSerialize["strategyId"] = o.StrategyId
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["userId"] = o.UserId
+	}
+	if !IsNil(o.BrokerAccountId) {
+		toSerialize["brokerAccountId"] = o.BrokerAccountId
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	return toSerialize, nil
 }
 
 type NullableStrategy struct {

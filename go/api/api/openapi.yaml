@@ -275,11 +275,6 @@ paths:
 components:
   schemas:
     User:
-      example:
-        firstName: mershab
-        lastName: issadien
-        userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        createDate: 2000-01-23T04:56:07.000+00:00
       properties:
         userId:
           format: uuid
@@ -295,11 +290,6 @@ components:
           type: string
       type: object
     Subscription:
-      example:
-        brokerAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        subscriptionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        portfolioPercentage: 0
       properties:
         subscriptionId:
           description: Unique identifier for the article
@@ -318,13 +308,6 @@ components:
           type: integer
       type: object
     Strategy:
-      example:
-        brokerAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        strategyId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        tags:
-        - tags
-        - tags
       properties:
         strategyId:
           description: Unique identifier for the article
@@ -344,11 +327,6 @@ components:
           type: array
       type: object
     BrokerAccount:
-      example:
-        brokerPassword: brokerPassword
-        brokerAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        brokerUsername: brokerUsername
-        brokerageType: brokerageType
       properties:
         brokerAccountId:
           description: Unique identifier for the article

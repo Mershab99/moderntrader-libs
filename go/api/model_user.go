@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the User type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &User{}
+
 // User struct for User
 type User struct {
 	UserId *string `json:"userId,omitempty"`
@@ -42,7 +45,7 @@ func NewUserWithDefaults() *User {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *User) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *User) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -60,7 +63,7 @@ func (o *User) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *User) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *User) SetUserId(v string) {
 
 // GetCreateDate returns the CreateDate field value if set, zero value otherwise.
 func (o *User) GetCreateDate() time.Time {
-	if o == nil || o.CreateDate == nil {
+	if o == nil || IsNil(o.CreateDate) {
 		var ret time.Time
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *User) GetCreateDate() time.Time {
 // GetCreateDateOk returns a tuple with the CreateDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetCreateDateOk() (*time.Time, bool) {
-	if o == nil || o.CreateDate == nil {
+	if o == nil || IsNil(o.CreateDate) {
 		return nil, false
 	}
 	return o.CreateDate, true
@@ -92,7 +95,7 @@ func (o *User) GetCreateDateOk() (*time.Time, bool) {
 
 // HasCreateDate returns a boolean if a field has been set.
 func (o *User) HasCreateDate() bool {
-	if o != nil && o.CreateDate != nil {
+	if o != nil && !IsNil(o.CreateDate) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *User) SetCreateDate(v time.Time) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *User) GetFirstName() string {
-	if o == nil || o.FirstName == nil {
+	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *User) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetFirstNameOk() (*string, bool) {
-	if o == nil || o.FirstName == nil {
+	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -124,7 +127,7 @@ func (o *User) GetFirstNameOk() (*string, bool) {
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *User) HasFirstName() bool {
-	if o != nil && o.FirstName != nil {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *User) SetFirstName(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *User) GetLastName() string {
-	if o == nil || o.LastName == nil {
+	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -148,7 +151,7 @@ func (o *User) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *User) GetLastNameOk() (*string, bool) {
-	if o == nil || o.LastName == nil {
+	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -156,7 +159,7 @@ func (o *User) GetLastNameOk() (*string, bool) {
 
 // HasLastName returns a boolean if a field has been set.
 func (o *User) HasLastName() bool {
-	if o != nil && o.LastName != nil {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -169,20 +172,28 @@ func (o *User) SetLastName(v string) {
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.CreateDate != nil {
-		toSerialize["createDate"] = o.CreateDate
-	}
-	if o.FirstName != nil {
-		toSerialize["firstName"] = o.FirstName
-	}
-	if o.LastName != nil {
-		toSerialize["lastName"] = o.LastName
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o User) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.UserId) {
+		toSerialize["userId"] = o.UserId
+	}
+	if !IsNil(o.CreateDate) {
+		toSerialize["createDate"] = o.CreateDate
+	}
+	if !IsNil(o.FirstName) {
+		toSerialize["firstName"] = o.FirstName
+	}
+	if !IsNil(o.LastName) {
+		toSerialize["lastName"] = o.LastName
+	}
+	return toSerialize, nil
 }
 
 type NullableUser struct {

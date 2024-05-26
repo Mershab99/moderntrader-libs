@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Subscription type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Subscription{}
+
 // Subscription struct for Subscription
 type Subscription struct {
 	// Unique identifier for the article
@@ -45,7 +48,7 @@ func NewSubscriptionWithDefaults() *Subscription {
 
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
 func (o *Subscription) GetSubscriptionId() string {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil || IsNil(o.SubscriptionId) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *Subscription) GetSubscriptionId() string {
 // GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetSubscriptionIdOk() (*string, bool) {
-	if o == nil || o.SubscriptionId == nil {
+	if o == nil || IsNil(o.SubscriptionId) {
 		return nil, false
 	}
 	return o.SubscriptionId, true
@@ -63,7 +66,7 @@ func (o *Subscription) GetSubscriptionIdOk() (*string, bool) {
 
 // HasSubscriptionId returns a boolean if a field has been set.
 func (o *Subscription) HasSubscriptionId() bool {
-	if o != nil && o.SubscriptionId != nil {
+	if o != nil && !IsNil(o.SubscriptionId) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *Subscription) SetSubscriptionId(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *Subscription) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *Subscription) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -95,7 +98,7 @@ func (o *Subscription) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *Subscription) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *Subscription) SetUserId(v string) {
 
 // GetBrokerAccountId returns the BrokerAccountId field value if set, zero value otherwise.
 func (o *Subscription) GetBrokerAccountId() string {
-	if o == nil || o.BrokerAccountId == nil {
+	if o == nil || IsNil(o.BrokerAccountId) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *Subscription) GetBrokerAccountId() string {
 // GetBrokerAccountIdOk returns a tuple with the BrokerAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetBrokerAccountIdOk() (*string, bool) {
-	if o == nil || o.BrokerAccountId == nil {
+	if o == nil || IsNil(o.BrokerAccountId) {
 		return nil, false
 	}
 	return o.BrokerAccountId, true
@@ -127,7 +130,7 @@ func (o *Subscription) GetBrokerAccountIdOk() (*string, bool) {
 
 // HasBrokerAccountId returns a boolean if a field has been set.
 func (o *Subscription) HasBrokerAccountId() bool {
-	if o != nil && o.BrokerAccountId != nil {
+	if o != nil && !IsNil(o.BrokerAccountId) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *Subscription) SetBrokerAccountId(v string) {
 
 // GetPortfolioPercentage returns the PortfolioPercentage field value if set, zero value otherwise.
 func (o *Subscription) GetPortfolioPercentage() int32 {
-	if o == nil || o.PortfolioPercentage == nil {
+	if o == nil || IsNil(o.PortfolioPercentage) {
 		var ret int32
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *Subscription) GetPortfolioPercentage() int32 {
 // GetPortfolioPercentageOk returns a tuple with the PortfolioPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetPortfolioPercentageOk() (*int32, bool) {
-	if o == nil || o.PortfolioPercentage == nil {
+	if o == nil || IsNil(o.PortfolioPercentage) {
 		return nil, false
 	}
 	return o.PortfolioPercentage, true
@@ -159,7 +162,7 @@ func (o *Subscription) GetPortfolioPercentageOk() (*int32, bool) {
 
 // HasPortfolioPercentage returns a boolean if a field has been set.
 func (o *Subscription) HasPortfolioPercentage() bool {
-	if o != nil && o.PortfolioPercentage != nil {
+	if o != nil && !IsNil(o.PortfolioPercentage) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *Subscription) SetPortfolioPercentage(v int32) {
 }
 
 func (o Subscription) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.SubscriptionId != nil {
-		toSerialize["subscriptionId"] = o.SubscriptionId
-	}
-	if o.UserId != nil {
-		toSerialize["userId"] = o.UserId
-	}
-	if o.BrokerAccountId != nil {
-		toSerialize["brokerAccountId"] = o.BrokerAccountId
-	}
-	if o.PortfolioPercentage != nil {
-		toSerialize["portfolioPercentage"] = o.PortfolioPercentage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Subscription) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SubscriptionId) {
+		toSerialize["subscriptionId"] = o.SubscriptionId
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["userId"] = o.UserId
+	}
+	if !IsNil(o.BrokerAccountId) {
+		toSerialize["brokerAccountId"] = o.BrokerAccountId
+	}
+	if !IsNil(o.PortfolioPercentage) {
+		toSerialize["portfolioPercentage"] = o.PortfolioPercentage
+	}
+	return toSerialize, nil
 }
 
 type NullableSubscription struct {

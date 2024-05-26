@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the BrokerAccount type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BrokerAccount{}
+
 // BrokerAccount struct for BrokerAccount
 type BrokerAccount struct {
 	// Unique identifier for the article
@@ -45,7 +48,7 @@ func NewBrokerAccountWithDefaults() *BrokerAccount {
 
 // GetBrokerAccountId returns the BrokerAccountId field value if set, zero value otherwise.
 func (o *BrokerAccount) GetBrokerAccountId() string {
-	if o == nil || o.BrokerAccountId == nil {
+	if o == nil || IsNil(o.BrokerAccountId) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *BrokerAccount) GetBrokerAccountId() string {
 // GetBrokerAccountIdOk returns a tuple with the BrokerAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BrokerAccount) GetBrokerAccountIdOk() (*string, bool) {
-	if o == nil || o.BrokerAccountId == nil {
+	if o == nil || IsNil(o.BrokerAccountId) {
 		return nil, false
 	}
 	return o.BrokerAccountId, true
@@ -63,7 +66,7 @@ func (o *BrokerAccount) GetBrokerAccountIdOk() (*string, bool) {
 
 // HasBrokerAccountId returns a boolean if a field has been set.
 func (o *BrokerAccount) HasBrokerAccountId() bool {
-	if o != nil && o.BrokerAccountId != nil {
+	if o != nil && !IsNil(o.BrokerAccountId) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *BrokerAccount) SetBrokerAccountId(v string) {
 
 // GetBrokerageType returns the BrokerageType field value if set, zero value otherwise.
 func (o *BrokerAccount) GetBrokerageType() string {
-	if o == nil || o.BrokerageType == nil {
+	if o == nil || IsNil(o.BrokerageType) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *BrokerAccount) GetBrokerageType() string {
 // GetBrokerageTypeOk returns a tuple with the BrokerageType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BrokerAccount) GetBrokerageTypeOk() (*string, bool) {
-	if o == nil || o.BrokerageType == nil {
+	if o == nil || IsNil(o.BrokerageType) {
 		return nil, false
 	}
 	return o.BrokerageType, true
@@ -95,7 +98,7 @@ func (o *BrokerAccount) GetBrokerageTypeOk() (*string, bool) {
 
 // HasBrokerageType returns a boolean if a field has been set.
 func (o *BrokerAccount) HasBrokerageType() bool {
-	if o != nil && o.BrokerageType != nil {
+	if o != nil && !IsNil(o.BrokerageType) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *BrokerAccount) SetBrokerageType(v string) {
 
 // GetBrokerUsername returns the BrokerUsername field value if set, zero value otherwise.
 func (o *BrokerAccount) GetBrokerUsername() string {
-	if o == nil || o.BrokerUsername == nil {
+	if o == nil || IsNil(o.BrokerUsername) {
 		var ret string
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *BrokerAccount) GetBrokerUsername() string {
 // GetBrokerUsernameOk returns a tuple with the BrokerUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BrokerAccount) GetBrokerUsernameOk() (*string, bool) {
-	if o == nil || o.BrokerUsername == nil {
+	if o == nil || IsNil(o.BrokerUsername) {
 		return nil, false
 	}
 	return o.BrokerUsername, true
@@ -127,7 +130,7 @@ func (o *BrokerAccount) GetBrokerUsernameOk() (*string, bool) {
 
 // HasBrokerUsername returns a boolean if a field has been set.
 func (o *BrokerAccount) HasBrokerUsername() bool {
-	if o != nil && o.BrokerUsername != nil {
+	if o != nil && !IsNil(o.BrokerUsername) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *BrokerAccount) SetBrokerUsername(v string) {
 
 // GetBrokerPassword returns the BrokerPassword field value if set, zero value otherwise.
 func (o *BrokerAccount) GetBrokerPassword() string {
-	if o == nil || o.BrokerPassword == nil {
+	if o == nil || IsNil(o.BrokerPassword) {
 		var ret string
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *BrokerAccount) GetBrokerPassword() string {
 // GetBrokerPasswordOk returns a tuple with the BrokerPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BrokerAccount) GetBrokerPasswordOk() (*string, bool) {
-	if o == nil || o.BrokerPassword == nil {
+	if o == nil || IsNil(o.BrokerPassword) {
 		return nil, false
 	}
 	return o.BrokerPassword, true
@@ -159,7 +162,7 @@ func (o *BrokerAccount) GetBrokerPasswordOk() (*string, bool) {
 
 // HasBrokerPassword returns a boolean if a field has been set.
 func (o *BrokerAccount) HasBrokerPassword() bool {
-	if o != nil && o.BrokerPassword != nil {
+	if o != nil && !IsNil(o.BrokerPassword) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *BrokerAccount) SetBrokerPassword(v string) {
 }
 
 func (o BrokerAccount) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BrokerAccountId != nil {
-		toSerialize["brokerAccountId"] = o.BrokerAccountId
-	}
-	if o.BrokerageType != nil {
-		toSerialize["brokerageType"] = o.BrokerageType
-	}
-	if o.BrokerUsername != nil {
-		toSerialize["brokerUsername"] = o.BrokerUsername
-	}
-	if o.BrokerPassword != nil {
-		toSerialize["brokerPassword"] = o.BrokerPassword
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o BrokerAccount) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BrokerAccountId) {
+		toSerialize["brokerAccountId"] = o.BrokerAccountId
+	}
+	if !IsNil(o.BrokerageType) {
+		toSerialize["brokerageType"] = o.BrokerageType
+	}
+	if !IsNil(o.BrokerUsername) {
+		toSerialize["brokerUsername"] = o.BrokerUsername
+	}
+	if !IsNil(o.BrokerPassword) {
+		toSerialize["brokerPassword"] = o.BrokerPassword
+	}
+	return toSerialize, nil
 }
 
 type NullableBrokerAccount struct {
