@@ -170,7 +170,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/BrokerAccount'
-  /subscriptions/{subscriptionId}:
+  /api/subscriptions/{subscriptionId}:
     get:
       operationId: GetSubscriptionByID
       tags:
