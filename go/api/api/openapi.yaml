@@ -181,7 +181,7 @@ paths:
       tags:
       - User
       - Brokerage
-  /subscriptions/{subscriptionId}:
+  /api/subscriptions/{subscriptionId}:
     delete:
       parameters:
       - explode: false
@@ -295,6 +295,10 @@ components:
           description: Unique identifier for the article
           format: uuid
           type: string
+        strategyId:
+          description: Unique identifier for the article
+          format: uuid
+          type: string
         userId:
           description: Unique identifier for the article
           format: uuid
@@ -310,18 +314,15 @@ components:
     Strategy:
       properties:
         strategyId:
-          description: Unique identifier for the article
+          description: strategyId (UUID) from DB
           format: uuid
           type: string
-        userId:
-          description: Unique identifier for the article
-          format: uuid
-          type: string
-        brokerAccountId:
-          description: Unique identifier for the article
-          format: uuid
+        strategyName:
+          description: Name of Strategy
+          format: text
           type: string
         tags:
+          description: Tags on this Strategy
           items:
             type: string
           type: array

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SubscriptionId** | Pointer to **string** | Unique identifier for the article | [optional] 
+**StrategyId** | Pointer to **string** | Unique identifier for the article | [optional] 
 **UserId** | Pointer to **string** | Unique identifier for the article | [optional] 
 **BrokerAccountId** | Pointer to **string** | Unique identifier for the article | [optional] 
 **PortfolioPercentage** | Pointer to **int32** | Percentage of your portfolio | [optional] 
@@ -52,6 +53,31 @@ SetSubscriptionId sets SubscriptionId field to given value.
 `func (o *Subscription) HasSubscriptionId() bool`
 
 HasSubscriptionId returns a boolean if a field has been set.
+
+### GetStrategyId
+
+`func (o *Subscription) GetStrategyId() string`
+
+GetStrategyId returns the StrategyId field if non-nil, zero value otherwise.
+
+### GetStrategyIdOk
+
+`func (o *Subscription) GetStrategyIdOk() (*string, bool)`
+
+GetStrategyIdOk returns a tuple with the StrategyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategyId
+
+`func (o *Subscription) SetStrategyId(v string)`
+
+SetStrategyId sets StrategyId field to given value.
+
+### HasStrategyId
+
+`func (o *Subscription) HasStrategyId() bool`
+
+HasStrategyId returns a boolean if a field has been set.
 
 ### GetUserId
 

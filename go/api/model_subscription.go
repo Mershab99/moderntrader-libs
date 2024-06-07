@@ -22,6 +22,8 @@ type Subscription struct {
 	// Unique identifier for the article
 	SubscriptionId *string `json:"subscriptionId,omitempty"`
 	// Unique identifier for the article
+	StrategyId *string `json:"strategyId,omitempty"`
+	// Unique identifier for the article
 	UserId *string `json:"userId,omitempty"`
 	// Unique identifier for the article
 	BrokerAccountId *string `json:"brokerAccountId,omitempty"`
@@ -76,6 +78,38 @@ func (o *Subscription) HasSubscriptionId() bool {
 // SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
 func (o *Subscription) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
+}
+
+// GetStrategyId returns the StrategyId field value if set, zero value otherwise.
+func (o *Subscription) GetStrategyId() string {
+	if o == nil || IsNil(o.StrategyId) {
+		var ret string
+		return ret
+	}
+	return *o.StrategyId
+}
+
+// GetStrategyIdOk returns a tuple with the StrategyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetStrategyIdOk() (*string, bool) {
+	if o == nil || IsNil(o.StrategyId) {
+		return nil, false
+	}
+	return o.StrategyId, true
+}
+
+// HasStrategyId returns a boolean if a field has been set.
+func (o *Subscription) HasStrategyId() bool {
+	if o != nil && !IsNil(o.StrategyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrategyId gets a reference to the given string and assigns it to the StrategyId field.
+func (o *Subscription) SetStrategyId(v string) {
+	o.StrategyId = &v
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
@@ -186,6 +220,9 @@ func (o Subscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.SubscriptionId) {
 		toSerialize["subscriptionId"] = o.SubscriptionId
+	}
+	if !IsNil(o.StrategyId) {
+		toSerialize["strategyId"] = o.StrategyId
 	}
 	if !IsNil(o.UserId) {
 		toSerialize["userId"] = o.UserId

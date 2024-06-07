@@ -4,10 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StrategyId** | Pointer to **string** | Unique identifier for the article | [optional] 
-**UserId** | Pointer to **string** | Unique identifier for the article | [optional] 
-**BrokerAccountId** | Pointer to **string** | Unique identifier for the article | [optional] 
-**Tags** | Pointer to **[]string** |  | [optional] 
+**StrategyId** | Pointer to **string** | strategyId (UUID) from DB | [optional] 
+**StrategyName** | Pointer to **string** | Name of Strategy | [optional] 
+**Tags** | Pointer to **[]string** | Tags on this Strategy | [optional] 
 
 ## Methods
 
@@ -53,55 +52,30 @@ SetStrategyId sets StrategyId field to given value.
 
 HasStrategyId returns a boolean if a field has been set.
 
-### GetUserId
+### GetStrategyName
 
-`func (o *Strategy) GetUserId() string`
+`func (o *Strategy) GetStrategyName() string`
 
-GetUserId returns the UserId field if non-nil, zero value otherwise.
+GetStrategyName returns the StrategyName field if non-nil, zero value otherwise.
 
-### GetUserIdOk
+### GetStrategyNameOk
 
-`func (o *Strategy) GetUserIdOk() (*string, bool)`
+`func (o *Strategy) GetStrategyNameOk() (*string, bool)`
 
-GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
+GetStrategyNameOk returns a tuple with the StrategyName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUserId
+### SetStrategyName
 
-`func (o *Strategy) SetUserId(v string)`
+`func (o *Strategy) SetStrategyName(v string)`
 
-SetUserId sets UserId field to given value.
+SetStrategyName sets StrategyName field to given value.
 
-### HasUserId
+### HasStrategyName
 
-`func (o *Strategy) HasUserId() bool`
+`func (o *Strategy) HasStrategyName() bool`
 
-HasUserId returns a boolean if a field has been set.
-
-### GetBrokerAccountId
-
-`func (o *Strategy) GetBrokerAccountId() string`
-
-GetBrokerAccountId returns the BrokerAccountId field if non-nil, zero value otherwise.
-
-### GetBrokerAccountIdOk
-
-`func (o *Strategy) GetBrokerAccountIdOk() (*string, bool)`
-
-GetBrokerAccountIdOk returns a tuple with the BrokerAccountId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBrokerAccountId
-
-`func (o *Strategy) SetBrokerAccountId(v string)`
-
-SetBrokerAccountId sets BrokerAccountId field to given value.
-
-### HasBrokerAccountId
-
-`func (o *Strategy) HasBrokerAccountId() bool`
-
-HasBrokerAccountId returns a boolean if a field has been set.
+HasStrategyName returns a boolean if a field has been set.
 
 ### GetTags
 

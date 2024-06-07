@@ -19,12 +19,11 @@ var _ MappedNullable = &Strategy{}
 
 // Strategy struct for Strategy
 type Strategy struct {
-	// Unique identifier for the article
+	// strategyId (UUID) from DB
 	StrategyId *string `json:"strategyId,omitempty"`
-	// Unique identifier for the article
-	UserId *string `json:"userId,omitempty"`
-	// Unique identifier for the article
-	BrokerAccountId *string `json:"brokerAccountId,omitempty"`
+	// Name of Strategy
+	StrategyName *string `json:"strategyName,omitempty"`
+	// Tags on this Strategy
 	Tags []string `json:"tags,omitempty"`
 }
 
@@ -77,68 +76,36 @@ func (o *Strategy) SetStrategyId(v string) {
 	o.StrategyId = &v
 }
 
-// GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *Strategy) GetUserId() string {
-	if o == nil || IsNil(o.UserId) {
+// GetStrategyName returns the StrategyName field value if set, zero value otherwise.
+func (o *Strategy) GetStrategyName() string {
+	if o == nil || IsNil(o.StrategyName) {
 		var ret string
 		return ret
 	}
-	return *o.UserId
+	return *o.StrategyName
 }
 
-// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
+// GetStrategyNameOk returns a tuple with the StrategyName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Strategy) GetUserIdOk() (*string, bool) {
-	if o == nil || IsNil(o.UserId) {
+func (o *Strategy) GetStrategyNameOk() (*string, bool) {
+	if o == nil || IsNil(o.StrategyName) {
 		return nil, false
 	}
-	return o.UserId, true
+	return o.StrategyName, true
 }
 
-// HasUserId returns a boolean if a field has been set.
-func (o *Strategy) HasUserId() bool {
-	if o != nil && !IsNil(o.UserId) {
+// HasStrategyName returns a boolean if a field has been set.
+func (o *Strategy) HasStrategyName() bool {
+	if o != nil && !IsNil(o.StrategyName) {
 		return true
 	}
 
 	return false
 }
 
-// SetUserId gets a reference to the given string and assigns it to the UserId field.
-func (o *Strategy) SetUserId(v string) {
-	o.UserId = &v
-}
-
-// GetBrokerAccountId returns the BrokerAccountId field value if set, zero value otherwise.
-func (o *Strategy) GetBrokerAccountId() string {
-	if o == nil || IsNil(o.BrokerAccountId) {
-		var ret string
-		return ret
-	}
-	return *o.BrokerAccountId
-}
-
-// GetBrokerAccountIdOk returns a tuple with the BrokerAccountId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Strategy) GetBrokerAccountIdOk() (*string, bool) {
-	if o == nil || IsNil(o.BrokerAccountId) {
-		return nil, false
-	}
-	return o.BrokerAccountId, true
-}
-
-// HasBrokerAccountId returns a boolean if a field has been set.
-func (o *Strategy) HasBrokerAccountId() bool {
-	if o != nil && !IsNil(o.BrokerAccountId) {
-		return true
-	}
-
-	return false
-}
-
-// SetBrokerAccountId gets a reference to the given string and assigns it to the BrokerAccountId field.
-func (o *Strategy) SetBrokerAccountId(v string) {
-	o.BrokerAccountId = &v
+// SetStrategyName gets a reference to the given string and assigns it to the StrategyName field.
+func (o *Strategy) SetStrategyName(v string) {
+	o.StrategyName = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -186,11 +153,8 @@ func (o Strategy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StrategyId) {
 		toSerialize["strategyId"] = o.StrategyId
 	}
-	if !IsNil(o.UserId) {
-		toSerialize["userId"] = o.UserId
-	}
-	if !IsNil(o.BrokerAccountId) {
-		toSerialize["brokerAccountId"] = o.BrokerAccountId
+	if !IsNil(o.StrategyName) {
+		toSerialize["strategyName"] = o.StrategyName
 	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags

@@ -279,6 +279,10 @@ components:
           type: string
           format: uuid
           description: Unique identifier for the article
+        strategyId:
+          type: string
+          format: uuid
+          description: Unique identifier for the article
         userId:
           type: string
           format: uuid
@@ -296,19 +300,16 @@ components:
         strategyId:
           type: string
           format: uuid
-          description: Unique identifier for the article
-        userId:
+          description: strategyId (UUID) from DB
+        strategyName:
           type: string
-          format: uuid
-          description: Unique identifier for the article
-        brokerAccountId:
-          type: string
-          format: uuid
-          description: Unique identifier for the article
+          format: text
+          description: Name of Strategy
         tags:
           type: array
           items:
             type: string
+          description: Tags on this Strategy
     BrokerAccount:
       type: object
       properties:
