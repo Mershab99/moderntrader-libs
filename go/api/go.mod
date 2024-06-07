@@ -1,6 +1,6 @@
-module github.com/GIT_USER_ID/GIT_REPO_ID
+module github.com/mershab99/moderntrader-libs/go/api
 
-go 1.18
+go 1.17
 
 require (
 )
