@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func unmarshalArrayIntoStruct(data []byte, v interface{}) error {
+func UnmarshalArrayIntoStruct(data []byte, v interface{}) error {
 	// Unmarshal into a slice of slices of interfaces
 	var rawData [][]interface{}
 	err := json.Unmarshal(data, &rawData)
@@ -53,7 +53,7 @@ func unmarshalArrayIntoStruct(data []byte, v interface{}) error {
 				}
 			case reflect.Slice:
 				if field.Type().Elem().Kind() == reflect.String {
-					field.Set(reflect.ValueOf(convertToStringSlice(item[i].([]interface{}))))
+					field.Set(reflect.ValueOf(ConvertToStringSlice(item[i].([]interface{}))))
 				}
 			}
 		}
@@ -66,7 +66,7 @@ func unmarshalArrayIntoStruct(data []byte, v interface{}) error {
 }
 
 // Helper function to convert interface slice to string slice
-func convertToStringSlice(arr []interface{}) []string {
+func ConvertToStringSlice(arr []interface{}) []string {
 	var result []string
 	for _, item := range arr {
 		if str, ok := item.(string); ok {
