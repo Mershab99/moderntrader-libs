@@ -1,6 +1,6 @@
-module github.com/mershab99/moderntrader-libs/go
+module github.com/Mershab99/moderntrader-libs/go
 
-go 1.22.3
+go 1.19
 
 require google.golang.org/protobuf v1.34.2
 
