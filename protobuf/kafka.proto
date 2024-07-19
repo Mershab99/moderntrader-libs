@@ -49,6 +49,7 @@ message OrderPlacement {
     int32 broker_account_id = 4;
     string ticker = 5;
     Side side = 6;
+    float quantity = 7;
     google.protobuf.Timestamp timestamp = 8;
 }
 
