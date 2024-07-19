@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package kafka;
 
-option go_package = "moderntrader-go/gen/go";
+option go_package = "github.com/Mershab99/moderntrader-libs/go/kafkapb";
 
 import "google/protobuf/timestamp.proto";
 
