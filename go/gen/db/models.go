@@ -7,11 +7,13 @@ package db
 import (
 	"database/sql"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type BrokerAccountTable struct {
 	ID             int32     `json:"id"`
-	UserID         int32     `json:"user_id"`
+	UserID         uuid.UUID `json:"user_id"`
 	BrokerType     string    `json:"broker_type"`
 	BrokerUsername string    `json:"broker_username"`
 	BrokerPassword string    `json:"broker_password"`
@@ -31,7 +33,7 @@ type StrategyRegistryTable struct {
 type StrategySubscriptionTable struct {
 	ID              int32     `json:"id"`
 	StrategyID      int32     `json:"strategy_id"`
-	UserID          int32     `json:"user_id"`
+	UserID          uuid.UUID `json:"user_id"`
 	BrokerAccountID int32     `json:"broker_account_id"`
 	Active          bool      `json:"active"`
 	CreatedTime     time.Time `json:"created_time"`
