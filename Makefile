@@ -5,3 +5,5 @@ generate-proto-go:
 
 generate-db-go:
 	docker run --rm -v $(pwd):/src -w /src sqlc/sqlc generate
+generate-proto-python:
+	protoc --python_out=./python/gen --pyi_out=./python/gen ./protobuf/kafka.proto

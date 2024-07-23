@@ -12,6 +12,12 @@ enum Side {
   PUT = 2;
   CALL = 3;
 }
+enum SECFilingType {
+  Form4 = 0;
+  Form13 = 1;
+  //TD_AMERITRADE = 1;
+  //ALPACA = 1;
+}
 
 enum Brokerage {
   INTERACTIVE_BROKERS = 0;
@@ -33,6 +39,12 @@ message BrokerageInfo {
     string password = 3;
 }
 */
+
+message SECFilingEvent {
+    int32 id = 1;
+    int32 db_filing_id = 2;
+    google.protobuf.Timestamp timestamp = 8;
+}
 
 message OrderSignal {
     int32 id = 1;
