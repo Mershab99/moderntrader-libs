@@ -41,13 +41,13 @@ message BrokerageInfo {
 */
 
 message SECFilingEvent {
-    int32 id = 1;
-    int32 db_filing_id = 2;
+    string id = 1;
+    repeated string db_filing_ids = 2;
     google.protobuf.Timestamp timestamp = 8;
 }
 
 message OrderSignal {
-    int32 id = 1;
+    string id = 1;
     int32 strategy_id = 2;
     string ticker = 3;
     Side side = 4;
@@ -55,7 +55,7 @@ message OrderSignal {
 }
 
 message OrderPlacement {
-    int32 id = 1;
+    string id = 1;
     int32 strategy_id = 2;
     string user_id = 3;
     int32 broker_account_id = 4;
