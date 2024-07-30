@@ -73,6 +73,52 @@ func (Side) EnumDescriptor() ([]byte, []int) {
 	return file_protobuf_kafka_proto_rawDescGZIP(), []int{0}
 }
 
+type SECFilingType int32
+
+const (
+	SECFilingType_Form4  SECFilingType = 0
+	SECFilingType_Form13 SECFilingType = 1
+)
+
+// Enum value maps for SECFilingType.
+var (
+	SECFilingType_name = map[int32]string{
+		0: "Form4",
+		1: "Form13",
+	}
+	SECFilingType_value = map[string]int32{
+		"Form4":  0,
+		"Form13": 1,
+	}
+)
+
+func (x SECFilingType) Enum() *SECFilingType {
+	p := new(SECFilingType)
+	*p = x
+	return p
+}
+
+func (x SECFilingType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SECFilingType) Descriptor() protoreflect.EnumDescriptor {
+	return file_protobuf_kafka_proto_enumTypes[1].Descriptor()
+}
+
+func (SECFilingType) Type() protoreflect.EnumType {
+	return &file_protobuf_kafka_proto_enumTypes[1]
+}
+
+func (x SECFilingType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SECFilingType.Descriptor instead.
+func (SECFilingType) EnumDescriptor() ([]byte, []int) {
+	return file_protobuf_kafka_proto_rawDescGZIP(), []int{1}
+}
+
 type Brokerage int32
 
 const (
@@ -100,11 +146,11 @@ func (x Brokerage) String() string {
 }
 
 func (Brokerage) Descriptor() protoreflect.EnumDescriptor {
-	return file_protobuf_kafka_proto_enumTypes[1].Descriptor()
+	return file_protobuf_kafka_proto_enumTypes[2].Descriptor()
 }
 
 func (Brokerage) Type() protoreflect.EnumType {
-	return &file_protobuf_kafka_proto_enumTypes[1]
+	return &file_protobuf_kafka_proto_enumTypes[2]
 }
 
 func (x Brokerage) Number() protoreflect.EnumNumber {
@@ -113,7 +159,70 @@ func (x Brokerage) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Brokerage.Descriptor instead.
 func (Brokerage) EnumDescriptor() ([]byte, []int) {
-	return file_protobuf_kafka_proto_rawDescGZIP(), []int{1}
+	return file_protobuf_kafka_proto_rawDescGZIP(), []int{2}
+}
+
+type SECFilingEvent struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	DbFilingIds []string               `protobuf:"bytes,2,rep,name=db_filing_ids,json=dbFilingIds,proto3" json:"db_filing_ids,omitempty"`
+	Timestamp   *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+}
+
+func (x *SECFilingEvent) Reset() {
+	*x = SECFilingEvent{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protobuf_kafka_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SECFilingEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SECFilingEvent) ProtoMessage() {}
+
+func (x *SECFilingEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_protobuf_kafka_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SECFilingEvent.ProtoReflect.Descriptor instead.
+func (*SECFilingEvent) Descriptor() ([]byte, []int) {
+	return file_protobuf_kafka_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *SECFilingEvent) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *SECFilingEvent) GetDbFilingIds() []string {
+	if x != nil {
+		return x.DbFilingIds
+	}
+	return nil
+}
+
+func (x *SECFilingEvent) GetTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Timestamp
+	}
+	return nil
 }
 
 type OrderSignal struct {
@@ -121,7 +230,7 @@ type OrderSignal struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id         string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	StrategyId int32                  `protobuf:"varint,2,opt,name=strategy_id,json=strategyId,proto3" json:"strategy_id,omitempty"`
 	Ticker     string                 `protobuf:"bytes,3,opt,name=ticker,proto3" json:"ticker,omitempty"`
 	Side       Side                   `protobuf:"varint,4,opt,name=side,proto3,enum=kafka.Side" json:"side,omitempty"`
@@ -131,7 +240,7 @@ type OrderSignal struct {
 func (x *OrderSignal) Reset() {
 	*x = OrderSignal{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_kafka_proto_msgTypes[0]
+		mi := &file_protobuf_kafka_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -144,7 +253,7 @@ func (x *OrderSignal) String() string {
 func (*OrderSignal) ProtoMessage() {}
 
 func (x *OrderSignal) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_kafka_proto_msgTypes[0]
+	mi := &file_protobuf_kafka_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -157,14 +266,14 @@ func (x *OrderSignal) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderSignal.ProtoReflect.Descriptor instead.
 func (*OrderSignal) Descriptor() ([]byte, []int) {
-	return file_protobuf_kafka_proto_rawDescGZIP(), []int{0}
+	return file_protobuf_kafka_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *OrderSignal) GetId() int32 {
+func (x *OrderSignal) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *OrderSignal) GetStrategyId() int32 {
@@ -200,7 +309,7 @@ type OrderPlacement struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id              int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	StrategyId      int32                  `protobuf:"varint,2,opt,name=strategy_id,json=strategyId,proto3" json:"strategy_id,omitempty"`
 	UserId          string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	BrokerAccountId int32                  `protobuf:"varint,4,opt,name=broker_account_id,json=brokerAccountId,proto3" json:"broker_account_id,omitempty"`
@@ -213,7 +322,7 @@ type OrderPlacement struct {
 func (x *OrderPlacement) Reset() {
 	*x = OrderPlacement{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protobuf_kafka_proto_msgTypes[1]
+		mi := &file_protobuf_kafka_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -226,7 +335,7 @@ func (x *OrderPlacement) String() string {
 func (*OrderPlacement) ProtoMessage() {}
 
 func (x *OrderPlacement) ProtoReflect() protoreflect.Message {
-	mi := &file_protobuf_kafka_proto_msgTypes[1]
+	mi := &file_protobuf_kafka_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -239,14 +348,14 @@ func (x *OrderPlacement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderPlacement.ProtoReflect.Descriptor instead.
 func (*OrderPlacement) Descriptor() ([]byte, []int) {
-	return file_protobuf_kafka_proto_rawDescGZIP(), []int{1}
+	return file_protobuf_kafka_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *OrderPlacement) GetId() int32 {
+func (x *OrderPlacement) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *OrderPlacement) GetStrategyId() int32 {
@@ -304,9 +413,17 @@ var file_protobuf_kafka_proto_rawDesc = []byte{
 	0x0a, 0x14, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x6b, 0x61, 0x66, 0x6b, 0x61,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x05, 0x6b, 0x61, 0x66, 0x6b, 0x61, 0x1a, 0x1f, 0x67,
 	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74,
-	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb1,
+	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x7e,
+	0x0a, 0x0e, 0x53, 0x45, 0x43, 0x46, 0x69, 0x6c, 0x69, 0x6e, 0x67, 0x45, 0x76, 0x65, 0x6e, 0x74,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
+	0x12, 0x22, 0x0a, 0x0d, 0x64, 0x62, 0x5f, 0x66, 0x69, 0x6c, 0x69, 0x6e, 0x67, 0x5f, 0x69, 0x64,
+	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x62, 0x46, 0x69, 0x6c, 0x69, 0x6e,
+	0x67, 0x49, 0x64, 0x73, 0x12, 0x38, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
+	0x70, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x22, 0xb1,
 	0x01, 0x0a, 0x0b, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x53, 0x69, 0x67, 0x6e, 0x61, 0x6c, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1f,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1f,
 	0x0a, 0x0b, 0x73, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x05, 0x52, 0x0a, 0x73, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67, 0x79, 0x49, 0x64, 0x12,
 	0x16, 0x0a, 0x06, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
@@ -318,7 +435,7 @@ var file_protobuf_kafka_proto_rawDesc = []byte{
 	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
 	0x6d, 0x70, 0x22, 0x95, 0x02, 0x0a, 0x0e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x50, 0x6c, 0x61, 0x63,
 	0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67,
+	0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x74, 0x72, 0x61, 0x74, 0x65, 0x67,
 	0x79, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x73, 0x74, 0x72, 0x61,
 	0x74, 0x65, 0x67, 0x79, 0x49, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69,
 	0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12,
@@ -336,13 +453,16 @@ var file_protobuf_kafka_proto_rawDesc = []byte{
 	0x09, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2a, 0x2c, 0x0a, 0x04, 0x53, 0x69,
 	0x64, 0x65, 0x12, 0x07, 0x0a, 0x03, 0x42, 0x55, 0x59, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x53,
 	0x45, 0x4c, 0x4c, 0x10, 0x01, 0x12, 0x07, 0x0a, 0x03, 0x50, 0x55, 0x54, 0x10, 0x02, 0x12, 0x08,
-	0x0a, 0x04, 0x43, 0x41, 0x4c, 0x4c, 0x10, 0x03, 0x2a, 0x24, 0x0a, 0x09, 0x42, 0x72, 0x6f, 0x6b,
-	0x65, 0x72, 0x61, 0x67, 0x65, 0x12, 0x17, 0x0a, 0x13, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x41, 0x43,
-	0x54, 0x49, 0x56, 0x45, 0x5f, 0x42, 0x52, 0x4f, 0x4b, 0x45, 0x52, 0x53, 0x10, 0x00, 0x42, 0x37,
-	0x5a, 0x35, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x4d, 0x65, 0x72,
-	0x73, 0x68, 0x61, 0x62, 0x39, 0x39, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x72, 0x6e, 0x74, 0x72, 0x61,
-	0x64, 0x65, 0x72, 0x2d, 0x6c, 0x69, 0x62, 0x73, 0x2f, 0x67, 0x6f, 0x2f, 0x67, 0x65, 0x6e, 0x2f,
-	0x6b, 0x61, 0x66, 0x6b, 0x61, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x0a, 0x04, 0x43, 0x41, 0x4c, 0x4c, 0x10, 0x03, 0x2a, 0x26, 0x0a, 0x0d, 0x53, 0x45, 0x43, 0x46,
+	0x69, 0x6c, 0x69, 0x6e, 0x67, 0x54, 0x79, 0x70, 0x65, 0x12, 0x09, 0x0a, 0x05, 0x46, 0x6f, 0x72,
+	0x6d, 0x34, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06, 0x46, 0x6f, 0x72, 0x6d, 0x31, 0x33, 0x10, 0x01,
+	0x2a, 0x24, 0x0a, 0x09, 0x42, 0x72, 0x6f, 0x6b, 0x65, 0x72, 0x61, 0x67, 0x65, 0x12, 0x17, 0x0a,
+	0x13, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x41, 0x43, 0x54, 0x49, 0x56, 0x45, 0x5f, 0x42, 0x52, 0x4f,
+	0x4b, 0x45, 0x52, 0x53, 0x10, 0x00, 0x42, 0x37, 0x5a, 0x35, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x4d, 0x65, 0x72, 0x73, 0x68, 0x61, 0x62, 0x39, 0x39, 0x2f, 0x6d,
+	0x6f, 0x64, 0x65, 0x72, 0x6e, 0x74, 0x72, 0x61, 0x64, 0x65, 0x72, 0x2d, 0x6c, 0x69, 0x62, 0x73,
+	0x2f, 0x67, 0x6f, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x6b, 0x61, 0x66, 0x6b, 0x61, 0x70, 0x62, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -357,25 +477,28 @@ func file_protobuf_kafka_proto_rawDescGZIP() []byte {
 	return file_protobuf_kafka_proto_rawDescData
 }
 
-var file_protobuf_kafka_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_protobuf_kafka_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_protobuf_kafka_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_protobuf_kafka_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_protobuf_kafka_proto_goTypes = []interface{}{
 	(Side)(0),                     // 0: kafka.Side
-	(Brokerage)(0),                // 1: kafka.Brokerage
-	(*OrderSignal)(nil),           // 2: kafka.OrderSignal
-	(*OrderPlacement)(nil),        // 3: kafka.OrderPlacement
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(SECFilingType)(0),            // 1: kafka.SECFilingType
+	(Brokerage)(0),                // 2: kafka.Brokerage
+	(*SECFilingEvent)(nil),        // 3: kafka.SECFilingEvent
+	(*OrderSignal)(nil),           // 4: kafka.OrderSignal
+	(*OrderPlacement)(nil),        // 5: kafka.OrderPlacement
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
 var file_protobuf_kafka_proto_depIdxs = []int32{
-	0, // 0: kafka.OrderSignal.side:type_name -> kafka.Side
-	4, // 1: kafka.OrderSignal.timestamp:type_name -> google.protobuf.Timestamp
-	0, // 2: kafka.OrderPlacement.side:type_name -> kafka.Side
-	4, // 3: kafka.OrderPlacement.timestamp:type_name -> google.protobuf.Timestamp
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	6, // 0: kafka.SECFilingEvent.timestamp:type_name -> google.protobuf.Timestamp
+	0, // 1: kafka.OrderSignal.side:type_name -> kafka.Side
+	6, // 2: kafka.OrderSignal.timestamp:type_name -> google.protobuf.Timestamp
+	0, // 3: kafka.OrderPlacement.side:type_name -> kafka.Side
+	6, // 4: kafka.OrderPlacement.timestamp:type_name -> google.protobuf.Timestamp
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_protobuf_kafka_proto_init() }
@@ -385,7 +508,7 @@ func file_protobuf_kafka_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_protobuf_kafka_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OrderSignal); i {
+			switch v := v.(*SECFilingEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -397,6 +520,18 @@ func file_protobuf_kafka_proto_init() {
 			}
 		}
 		file_protobuf_kafka_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*OrderSignal); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_protobuf_kafka_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*OrderPlacement); i {
 			case 0:
 				return &v.state
@@ -414,8 +549,8 @@ func file_protobuf_kafka_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protobuf_kafka_proto_rawDesc,
-			NumEnums:      2,
-			NumMessages:   2,
+			NumEnums:      3,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

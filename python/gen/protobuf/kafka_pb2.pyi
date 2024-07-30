@@ -1,8 +1,9 @@
 from google.protobuf import timestamp_pb2 as _timestamp_pb2
+from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from typing import ClassVar as _ClassVar, Mapping as _Mapping, Optional as _Optional, Union as _Union
+from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Mapping, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
@@ -30,14 +31,14 @@ Form13: SECFilingType
 INTERACTIVE_BROKERS: Brokerage
 
 class SECFilingEvent(_message.Message):
-    __slots__ = ("id", "db_filing_id", "timestamp")
+    __slots__ = ("id", "db_filing_ids", "timestamp")
     ID_FIELD_NUMBER: _ClassVar[int]
-    DB_FILING_ID_FIELD_NUMBER: _ClassVar[int]
+    DB_FILING_IDS_FIELD_NUMBER: _ClassVar[int]
     TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
-    id: int
-    db_filing_id: int
+    id: str
+    db_filing_ids: _containers.RepeatedScalarFieldContainer[str]
     timestamp: _timestamp_pb2.Timestamp
-    def __init__(self, id: _Optional[int] = ..., db_filing_id: _Optional[int] = ..., timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., db_filing_ids: _Optional[_Iterable[str]] = ..., timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
 
 class OrderSignal(_message.Message):
     __slots__ = ("id", "strategy_id", "ticker", "side", "timestamp")
@@ -46,12 +47,12 @@ class OrderSignal(_message.Message):
     TICKER_FIELD_NUMBER: _ClassVar[int]
     SIDE_FIELD_NUMBER: _ClassVar[int]
     TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
-    id: int
+    id: str
     strategy_id: int
     ticker: str
     side: Side
     timestamp: _timestamp_pb2.Timestamp
-    def __init__(self, id: _Optional[int] = ..., strategy_id: _Optional[int] = ..., ticker: _Optional[str] = ..., side: _Optional[_Union[Side, str]] = ..., timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., strategy_id: _Optional[int] = ..., ticker: _Optional[str] = ..., side: _Optional[_Union[Side, str]] = ..., timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
 
 class OrderPlacement(_message.Message):
     __slots__ = ("id", "strategy_id", "user_id", "broker_account_id", "ticker", "side", "quantity", "timestamp")
@@ -63,7 +64,7 @@ class OrderPlacement(_message.Message):
     SIDE_FIELD_NUMBER: _ClassVar[int]
     QUANTITY_FIELD_NUMBER: _ClassVar[int]
     TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
-    id: int
+    id: str
     strategy_id: int
     user_id: str
     broker_account_id: int
@@ -71,4 +72,4 @@ class OrderPlacement(_message.Message):
     side: Side
     quantity: float
     timestamp: _timestamp_pb2.Timestamp
-    def __init__(self, id: _Optional[int] = ..., strategy_id: _Optional[int] = ..., user_id: _Optional[str] = ..., broker_account_id: _Optional[int] = ..., ticker: _Optional[str] = ..., side: _Optional[_Union[Side, str]] = ..., quantity: _Optional[float] = ..., timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
+    def __init__(self, id: _Optional[str] = ..., strategy_id: _Optional[int] = ..., user_id: _Optional[str] = ..., broker_account_id: _Optional[int] = ..., ticker: _Optional[str] = ..., side: _Optional[_Union[Side, str]] = ..., quantity: _Optional[float] = ..., timestamp: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
