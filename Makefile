@@ -7,3 +7,7 @@ generate-db-go:
 	docker run --rm -v $(pwd):/src -w /src sqlc/sqlc generate
 generate-proto-python:
 	protoc --python_out=./python/gen --pyi_out=./python/gen ./protobuf/kafka.proto
+
+generate-xml-go:
+	go install github.com/miku/zek/cmd/zek@latest
+	zek -P secxml -o xml/sec.go < ~/Downloads/secfiling.txt
